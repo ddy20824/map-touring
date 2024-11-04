@@ -7078,8 +7078,8 @@ Transform:
   m_GameObject: {fileID: 1009053884}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -141, y: 1, z: -2939.143}
-  m_LocalScale: {x: 180, y: 180, z: 180}
+  m_LocalPosition: {x: -160.09993, y: 1, z: -2939.143}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 332199856}
@@ -8189,8 +8189,8 @@ Transform:
   m_GameObject: {fileID: 1148894219}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -141, y: 1, z: -2939.143}
-  m_LocalScale: {x: 180.00002, y: 180.00002, z: 180.00002}
+  m_LocalPosition: {x: -160.1, y: 1, z: -2939.143}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 531864326}
@@ -9032,8 +9032,8 @@ Transform:
   m_GameObject: {fileID: 1343738249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: -2939.143}
-  m_LocalScale: {x: 180.00002, y: 180.00002, z: 180.00002}
+  m_LocalPosition: {x: -0.09998965, y: 1, z: -2939.143}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2108985667}
@@ -12122,7 +12122,12 @@ MonoBehaviour:
   - {fileID: 1707271801}
   - {fileID: 249559350}
   - {fileID: 1319811212}
+  mapPuzzle:
+  - {fileID: 1148894219}
+  - {fileID: 1343738249}
+  - {fileID: 1952472076}
   mapCount: 3
+  level: 1
   isMapOpen: 0
 --- !u!1 &1898039546
 GameObject:
@@ -12998,8 +13003,8 @@ Transform:
   m_GameObject: {fileID: 1952472076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 146.00003, y: 1, z: -2939.143}
-  m_LocalScale: {x: 180.00002, y: 180.00002, z: 180.00002}
+  m_LocalPosition: {x: 159.90001, y: 1, z: -2939.143}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1842394679}
