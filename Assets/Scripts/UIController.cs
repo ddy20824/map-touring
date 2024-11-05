@@ -24,7 +24,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (GameState.Instance.getMapPuzzleActive() && Input.GetKeyDown(KeyCode.M))
         {
             if (isMapOpen)
             {
