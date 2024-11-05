@@ -11,7 +11,7 @@ public class ItemController : MonoBehaviour
     void Start()
     {
         // bubble = this.gameObject.transform.GetChild(0).gameObject;
-        bubble = findChildByTag(this.transform, "bubble");
+        bubble = findChildByTag(this.transform, "hint");
         bubble.SetActive(false);
         display.SetActive(false);
     }
