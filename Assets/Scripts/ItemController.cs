@@ -23,7 +23,7 @@ public class ItemController : MonoBehaviour
         {
             Destroy(gameObject);
             display.SetActive(true);
-            GameState.Instance.setMapPuzzleActive(true);
+            GameState.Instance.UpdateGameState(gameObject.name);
         }
     }
 
