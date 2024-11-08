@@ -17,6 +17,7 @@ public class MonsterController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         anim.SetBool(param, false);
+        GameState.Instance.SetPlayerFronze(false);
     }
 
 
@@ -25,6 +26,7 @@ public class MonsterController : MonoBehaviour
         if (!GameState.Instance.GetHasWine())
         {
             anim.SetBool("IsAttack", true);
+            GameState.Instance.SetPlayerFronze(true);
             StartCoroutine(StopMonsterAnimation("IsAttack"));
         }
         else

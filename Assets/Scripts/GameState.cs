@@ -1,3 +1,5 @@
+using System.Numerics;
+
 public class GameState
 {
     private static GameState instance = null;
@@ -5,7 +7,9 @@ public class GameState
     private bool monsterActive;
     private bool playerFronze;
     private int currentLevel;
+    private int deadCount;
     private bool hasWine;
+    public Vector2[] playerLevelPosition = new Vector2[2] { new(-37.5f, -4.65f), new(-11f, 0f) };
 
     private GameState()
     {
@@ -41,6 +45,11 @@ public class GameState
             default:
                 break;
         }
+    }
+
+    public Vector2 GetPlayerInitPosition()
+    {
+        return playerLevelPosition[currentLevel - 1];
     }
     public void SetHasWine(bool hasWine)
     {
@@ -86,5 +95,13 @@ public class GameState
     public int GetCurrentLevel()
     {
         return currentLevel;
+    }
+    public void SetDeadCount(int count)
+    {
+        deadCount = count;
+    }
+    public int GetDeadCount()
+    {
+        return deadCount;
     }
 }

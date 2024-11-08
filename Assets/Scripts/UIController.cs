@@ -76,6 +76,7 @@ public class UIController : MonoBehaviour
     {
         panel.SetActive(true);
         isMapOpen = true;
+        GameState.Instance.SetPlayerFronze(true);
         SetCurrentMapIndex();
     }
 
@@ -83,6 +84,7 @@ public class UIController : MonoBehaviour
     {
         panel.SetActive(false);
         isMapOpen = false;
+        GameState.Instance.SetPlayerFronze(false);
         selectedMapIndex = -1;
     }
 

@@ -11,6 +11,7 @@ public class MonTriggerController : MonoBehaviour
         if (!GameState.Instance.GetMonsterActive())
         {
             GameState.Instance.UpdateGameState(name);
+            GameState.Instance.SetPlayerFronze(true);
             monster.SetActive(true);
         }
     }

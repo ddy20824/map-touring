@@ -16,8 +16,6 @@ namespace ClearSky
         bool isJumping = false;
         private bool alive = true;
 
-        public UIController uiController;
-
         // Start is called before the first frame update
         void Start()
         {
@@ -28,7 +26,7 @@ namespace ClearSky
         private void Update()
         {
             Restart();
-            if (alive)
+            if (alive && !GameState.Instance.GetPlayerFronze())
             {
                 Hurt();
                 Die();
@@ -50,7 +48,7 @@ namespace ClearSky
             anim.SetBool("isRun", false);
 
 
-            if (Input.GetAxisRaw("Horizontal") < 0 && !uiController.isMapOpen)
+            if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 direction = -1;
                 moveVelocity = Vector3.left;
@@ -60,7 +58,7 @@ namespace ClearSky
                     anim.SetBool("isRun", true);
 
             }
-            if (Input.GetAxisRaw("Horizontal") > 0 && !uiController.isMapOpen)
+            if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 direction = 1;
                 moveVelocity = Vector3.right;
