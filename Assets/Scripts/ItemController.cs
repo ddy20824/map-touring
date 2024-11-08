@@ -5,39 +5,44 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    private GameObject bubble;
-    public GameObject display;
+    private GameObject hint;
+    protected bool isTrigger;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        // bubble = this.gameObject.transform.GetChild(0).gameObject;
-        bubble = findChildByTag(this.transform, "hint");
-        bubble.SetActive(false);
-        display.SetActive(false);
+        hint = findChildByTag(this.transform, "hint");
+        hint.SetActive(false);
+        isTrigger = false;
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (isTrigger)
         {
-            Destroy(gameObject);
-            display.SetActive(true);
-            GameState.Instance.UpdateGameState(gameObject.name);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                hint.SetActive(false);
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        bubble.SetActive(true);
+        if (other.name == "Player")
+        {
+            hint.SetActive(true);
+            isTrigger = true;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected void OnTriggerExit2D(Collider2D other)
     {
-        bubble.SetActive(false);
+        hint.SetActive(false);
+        isTrigger = false;
     }
 
-    private GameObject findChildByTag(Transform parent, string inputTag)
+    protected GameObject findChildByTag(Transform parent, string inputTag)
     {
         GameObject childWithTag = null;
         for (int i = 0; i < parent.childCount; i++)

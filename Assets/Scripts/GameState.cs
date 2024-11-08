@@ -8,6 +8,7 @@ public class GameState
     private bool playerFronze;
     private int currentLevel;
     private int deadCount;
+    private int gemCount;
     private bool hasWine;
     public Vector2[] playerLevelPosition = new Vector2[2] { new(-37.5f, -4.65f), new(-11f, 0f) };
 
@@ -15,6 +16,8 @@ public class GameState
     {
         mapPuzzleActive = false;
         currentLevel = 1;
+        deadCount = 0;
+        gemCount = 0;
     }
 
     public static GameState Instance
@@ -103,5 +106,14 @@ public class GameState
     public int GetDeadCount()
     {
         return deadCount;
+    }
+
+    public void SetGemCount(int count)
+    {
+        gemCount = count;
+    }
+    public int GetGemCount()
+    {
+        return gemCount;
     }
 }
