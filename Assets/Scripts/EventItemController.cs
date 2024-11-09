@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EventItemController : ItemController
 {
@@ -38,6 +39,7 @@ public class EventItemController : ItemController
 
     private void MoveToNextLevel()
     {
+        GameState.Instance.SetCurrentLevel(2);
         SceneManager.LoadScene("Level2");
     }
 }

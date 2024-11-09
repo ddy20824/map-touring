@@ -78,18 +78,30 @@ public class MonsterController : MonoBehaviour
         GameState.Instance.SetPlayerDie(true);
     }
 
+    void MonsterDisappear()
+    {
+        GameState.Instance.SetPlayerFronze(false);
+        gameObject.SetActive(false);
+    }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (GameState.Instance.GetCurrentLevel() == 2 && GameState.Instance.GetHasWine())
         {
+            GameState.Instance.SetPlayerFronze(true);
+            anim.SetTrigger("Disappear");
+            StartCoroutine(Helper.Delay(MonsterDisappear, 1f));
         }
         else
         {
             if (other.gameObject.name == "Player")
             {
-                direction = (this.transform.position.x > other.transform.position.x) ? 1 : -1;
-                transform.localScale = new Vector3(direction * 5, 5, 5);
+                if (isAutoMon)
+                {
+                    direction = (this.transform.position.x > other.transform.position.x) ? 1 : -1;
+                    transform.localScale = new Vector3(direction * 5, 5, 5);
+                }
 
                 anim.SetBool("IsAttack", true);
                 isAttacking = true;

@@ -10,6 +10,7 @@ TagManager:
   - gemChest
   - runeChest
   - goal
+  - wine
   layers:
   - Default
   - TransparentFX
