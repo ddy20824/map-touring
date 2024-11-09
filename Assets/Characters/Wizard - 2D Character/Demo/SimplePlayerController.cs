@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace ClearSky
 {
@@ -8,6 +9,7 @@ namespace ClearSky
         public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
 
         public float scale = 0.5f;
+        public Text dieText;
 
         private Rigidbody2D rb;
         private Animator anim;
@@ -15,6 +17,7 @@ namespace ClearSky
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
+        private readonly float fallPosition = -23f;
 
         // Start is called before the first frame update
         void Start()
@@ -34,6 +37,10 @@ namespace ClearSky
                 Jump();
                 Run();
 
+            }
+            if (transform.position.y < fallPosition)
+            {
+                Recover();
             }
         }
         private void OnTriggerEnter2D(Collider2D other)
@@ -110,12 +117,23 @@ namespace ClearSky
         }
         void Die()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (GameState.Instance.GetPlayerDie())
             {
                 anim.SetTrigger("die");
                 alive = false;
+                StartCoroutine(Helper.Delay(Recover, 0.5f));
             }
         }
+        void Recover()
+        {
+            GameState.Instance.AddDeadCount();
+            dieText.text = GameState.Instance.GetDeadCount().ToString();
+            anim.SetTrigger("idle");
+            alive = true;
+            GameState.Instance.SetPlayerDie(false);
+            transform.position = Vector3.Lerp(transform.position, GameState.Instance.GetPlayerInitPosition(), 1);
+        }
+
         void Restart()
         {
             if (Input.GetKeyDown(KeyCode.Alpha0))

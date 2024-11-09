@@ -1,16 +1,25 @@
-using System.Numerics;
+using System.IO;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class GameState
 {
     private static GameState instance = null;
+    [SerializeField]
     private bool mapPuzzleActive;
+    [SerializeField]
     private bool monsterActive;
-    private bool playerFronze;
+    [SerializeField]
     private int currentLevel;
+    [SerializeField]
     private int deadCount;
+    [SerializeField]
     private int gemCount;
+    [SerializeField]
     private bool hasWine;
-    public Vector2[] playerLevelPosition = new Vector2[2] { new(-37.5f, -4.65f), new(-11f, 0f) };
+    private bool playerFronze;
+    private bool playerDie;
+    public Vector3[] playerLevelPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
 
     private GameState()
     {
@@ -50,7 +59,17 @@ public class GameState
         }
     }
 
-    public Vector2 GetPlayerInitPosition()
+    public void SaveGame(string filename)
+    {
+        Debug.Log(JsonUtility.ToJson(Instance));
+        string json = JsonUtility.ToJson(GameState.Instance);
+        string path = Path.Combine(Application.persistentDataPath, filename);
+
+        File.WriteAllText(path, json);
+        Debug.Log("Game Saved at:" + path);
+    }
+
+    public Vector3 GetPlayerInitPosition()
     {
         return playerLevelPosition[currentLevel - 1];
     }
@@ -90,6 +109,16 @@ public class GameState
     {
         return playerFronze;
     }
+    public void SetPlayerDie(bool die)
+    {
+        playerDie = die;
+    }
+
+    public bool GetPlayerDie()
+    {
+        return playerDie;
+    }
+
 
     public void SetCurrentLevel(int level)
     {
@@ -99,9 +128,9 @@ public class GameState
     {
         return currentLevel;
     }
-    public void SetDeadCount(int count)
+    public void AddDeadCount()
     {
-        deadCount = count;
+        deadCount++;
     }
     public int GetDeadCount()
     {
