@@ -12,13 +12,17 @@ public class MonsterController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        StartCoroutine(Helper.Delay(SetMonsterIdleAnimation, 0.1f));
         isAutoMon = CompareTag("autoMon");
         if (isAutoMon)
         {
             anim.SetBool("IsRun", true);
             position1 = new Vector3(-17, transform.position.y, 0);
             position2 = new Vector3(-9, transform.position.y, 0);
+        }
+        else
+        {
+
+            StartCoroutine(Helper.Delay(SetMonsterIdleAnimation, 0.1f));
         }
     }
     private float duration = 0;
@@ -27,6 +31,8 @@ public class MonsterController : MonoBehaviour
         //start -17, end -9
         if (isAutoMon && !isAttacking)
         {
+            position1.x = -17 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
+            position2.x = -9 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
             if (direction == -1)
             {
                 if (duration < 2.5)
@@ -80,9 +86,15 @@ public class MonsterController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsAttack", true);
-            isAttacking = true;
-            StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.7f));
+            if (other.gameObject.name == "Player")
+            {
+                direction = (this.transform.position.x > other.transform.position.x) ? 1 : -1;
+                transform.localScale = new Vector3(direction * 5, 5, 5);
+
+                anim.SetBool("IsAttack", true);
+                isAttacking = true;
+                StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.7f));
+            }
         }
     }
 }

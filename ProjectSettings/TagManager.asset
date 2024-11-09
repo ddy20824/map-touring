@@ -5,9 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - hint
-  - chest
   - map
   - autoMon
+  - gemChest
+  - runeChest
+  - goal
   layers:
   - Default
   - TransparentFX

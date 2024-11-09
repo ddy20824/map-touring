@@ -8,7 +8,7 @@ public class ChestController : ItemController
     private bool isOpen;
 
     [SerializeField]
-    public Text gemText;
+    public Text displayText;
     public override void Start()
     {
         base.Start();
@@ -27,7 +27,14 @@ public class ChestController : ItemController
                 isOpen = true;
                 anim.SetBool("IsOpened", true);
                 this.GetComponent<Collider2D>().enabled = false;
-                UpdateGemCount();
+                if (tag == "gemChest")
+                {
+                    UpdateGemCount();
+                }
+                if (tag == "runeChest")
+                {
+                    UpdateRuneCount();
+                }
             }
         }
     }
@@ -36,6 +43,12 @@ public class ChestController : ItemController
     {
         int gemCount = GameState.Instance.GetGemCount() + 1;
         GameState.Instance.SetGemCount(gemCount);
-        gemText.text = gemCount.ToString();
+        displayText.text = gemCount.ToString();
+    }
+
+    private void UpdateRuneCount()
+    {
+        GameState.Instance.SetIsRuneStone(true);
+        displayText.text = "1";
     }
 }

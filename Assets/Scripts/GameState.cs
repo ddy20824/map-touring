@@ -16,6 +16,8 @@ public class GameState
     [SerializeField]
     private int gemCount;
     [SerializeField]
+    private bool isRuneStone;
+    [SerializeField]
     private bool hasWine;
     private bool playerFronze;
     private bool playerDie;
@@ -27,6 +29,7 @@ public class GameState
         currentLevel = 1;
         deadCount = 0;
         gemCount = 0;
+        isRuneStone = false;
     }
 
     public static GameState Instance
@@ -144,5 +147,14 @@ public class GameState
     public int GetGemCount()
     {
         return gemCount;
+    }
+
+    public void SetIsRuneStone(bool status)
+    {
+        isRuneStone = status;
+    }
+    public bool GetIsRuneStone()
+    {
+        return isRuneStone;
     }
 }
