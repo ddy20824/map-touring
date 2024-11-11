@@ -586,7 +586,6 @@ MonoBehaviour:
   - {fileID: 1700444297}
   - {fileID: 1276025943}
   - {fileID: 1974721558}
-  level: 2
   isMapOpen: 0
 --- !u!114 &68189944
 MonoBehaviour:
@@ -12210,6 +12209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1027647279}
     m_Modifications:
+    - target: {fileID: 3426818700850662579, guid: be45c7f16746c98428fc87d0d0f34226, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4460813094189888138, guid: be45c7f16746c98428fc87d0d0f34226, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.6856248
@@ -12270,7 +12273,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Village Props - Platform 01 L X2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2614736315676289655, guid: be45c7f16746c98428fc87d0d0f34226, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15891,7 +15895,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1790980893991760848, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
+    - {fileID: 4354427169953323695, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16520,7 +16526,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Village Props - Platform 01 R X2 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5683552884366255167, guid: 948a335f2eab4d944a21f7654ca9e467, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1791996119305455027, guid: 948a335f2eab4d944a21f7654ca9e467, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
