@@ -7,14 +7,14 @@ public class UIController : MonoBehaviour
     public GameObject player;
     public GameObject[] Map;
     public GameObject[] mapPuzzle;
-    public int level;
 
-    Vector2[] map_Position;
+    Vector3[] map_Position;
     Vector2[] mapPuzzle_Position;
     int mapCount;
     public bool isMapOpen = false;
     int currentIndexOfMap = 0;
     int selectedMapIndex = -1;
+    int playerIndex = 0;
     float count = 1.0f;
     void Start()
     {
@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if (level == 1)
+        if (GameState.Instance.GetCurrentLevel() == 1)
         {
             Level1Control();
         }
@@ -91,7 +91,7 @@ public class UIController : MonoBehaviour
     void GetMapInfo()
     {
         mapCount = Map.Length;
-        map_Position = new Vector2[mapCount];
+        map_Position = new Vector3[mapCount];
         mapPuzzle_Position = new Vector2[mapCount];
         for (int i = 0; i < mapCount; i++)
         {
@@ -102,13 +102,13 @@ public class UIController : MonoBehaviour
 
     void SetCurrentMapIndex()
     {
-        var level1XPosition = new float[3] { -14, 13, 39 };
-        if (level == 1)
+        var playerPosition = player.transform.position;
+        if (GameState.Instance.GetCurrentLevel() == 1)
         {
-            var playerPosition = player.transform.position.x;
+            var level1XPosition = new float[3] { -14, 13, 39 };
             for (int i = 0; i < mapCount; i++)
             {
-                if (playerPosition < level1XPosition[i])
+                if (playerPosition.x < level1XPosition[i])
                 {
                     currentIndexOfMap = i;
                     break;
@@ -118,7 +118,6 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            var playerPosition = player.transform.position;
             if (playerPosition.x < 13)
             {
                 currentIndexOfMap = playerPosition.y > -7 ? 0 : 2;
@@ -128,6 +127,8 @@ public class UIController : MonoBehaviour
                 currentIndexOfMap = playerPosition.y > -7 ? 1 : 3;
             }
         }
+        playerIndex = currentIndexOfMap;
+
     }
 
     void ExchangeMapPuzzle()
@@ -150,6 +151,11 @@ public class UIController : MonoBehaviour
         {
             var name = mapPuzzle[i].name;
             var index = int.Parse(name.Substring(name.Length - 1)) - 1;
+            if (i == playerIndex)
+            {
+                var moving = map_Position[i] - Map[index].transform.position;
+                player.transform.position -= moving;
+            }
             Map[index].transform.position = map_Position[i];
         }
     }
@@ -185,7 +191,6 @@ public class UIController : MonoBehaviour
                 currentIndexOfMap += 2;
             }
         }
-        // highlight.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
     }
     void Level1Control()
     {
@@ -206,7 +211,6 @@ public class UIController : MonoBehaviour
                     }
                 }
                 currentIndexOfMap = expectIndex;
-                // highlight.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -226,7 +230,6 @@ public class UIController : MonoBehaviour
                     }
                 }
                 currentIndexOfMap = expectIndex;
-                // highlight.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
             }
         }
     }

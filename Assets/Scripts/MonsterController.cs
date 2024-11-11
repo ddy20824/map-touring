@@ -16,8 +16,8 @@ public class MonsterController : MonoBehaviour
         if (isAutoMon)
         {
             anim.SetBool("IsRun", true);
-            position1 = new Vector3(-17, transform.position.y, 0);
-            position2 = new Vector3(-9, transform.position.y, 0);
+            position1 = new Vector3(-13, transform.position.y, 0);
+            position2 = new Vector3(-2, transform.position.y, 0);
         }
         else
         {
@@ -28,11 +28,11 @@ public class MonsterController : MonoBehaviour
     private float duration = 0;
     void Update()
     {
-        //start -17, end -9
+        //start -13, end -2
         if (isAutoMon && !isAttacking)
         {
-            position1.x = -17 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
-            position2.x = -9 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
+            position1.x = -13 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
+            position2.x = -2 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
             if (direction == -1)
             {
                 if (duration < 2.5)

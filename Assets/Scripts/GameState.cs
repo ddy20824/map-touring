@@ -21,7 +21,7 @@ public class GameState
     private bool hasWine;
     private bool playerFronze;
     private bool playerDie;
-    public Vector3[] playerLevelPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
+    private Vector3[] playerLevelPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
 
     private GameState()
     {
@@ -121,7 +121,6 @@ public class GameState
     {
         return playerDie;
     }
-
 
     public void SetCurrentLevel(int level)
     {
