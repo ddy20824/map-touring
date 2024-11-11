@@ -26,11 +26,17 @@ public class EventItemController : ItemController
                 }
                 if (tag == "goal")
                 {
-                    if (GameState.Instance.GetIsRuneStone())
+                    int currentLevel = GameState.Instance.GetCurrentLevel();
+                    if (GameState.Instance.GetIsRuneStone() && currentLevel == 1)
                     {
                         display.SetActive(true);
                         StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
 
+                    }
+                    else
+                    {
+                        display.SetActive(true);
+                        GameState.Instance.SetPlayerFronze(true);
                     }
                 }
             }
