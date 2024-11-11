@@ -21,6 +21,7 @@ public class GameState
     private bool hasWine;
     private bool playerFronze;
     private bool playerDie;
+    [SerializeField]
     private Vector3[] playerLevelPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
 
     private GameState()
@@ -75,6 +76,10 @@ public class GameState
     public Vector3 GetPlayerInitPosition()
     {
         return playerLevelPosition[currentLevel - 1];
+    }
+    public void SetPlayerInitPosition(Vector3 move)
+    {
+        playerLevelPosition[currentLevel - 1] += move;
     }
     public void SetHasWine(bool hasWine)
     {

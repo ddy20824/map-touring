@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class UIController : MonoBehaviour
 {
@@ -151,10 +153,14 @@ public class UIController : MonoBehaviour
         {
             var name = mapPuzzle[i].name;
             var index = int.Parse(name.Substring(name.Length - 1)) - 1;
+            var moving = map_Position[i] - Map[index].transform.position;
             if (i == playerIndex)
             {
-                var moving = map_Position[i] - Map[index].transform.position;
                 player.transform.position -= moving;
+            }
+            if (index == 0 && moving != Vector3.zero)
+            {
+                GameState.Instance.SetPlayerInitPosition(moving);
             }
             Map[index].transform.position = map_Position[i];
         }
