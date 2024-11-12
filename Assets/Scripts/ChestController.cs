@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChestController : ItemController
+public class ChestController : ItemController, IDataPersistent
 {
     private Animator anim;
     private bool isOpen;
@@ -26,7 +26,8 @@ public class ChestController : ItemController
             {
                 isOpen = true;
                 anim.SetBool("IsOpened", true);
-                this.GetComponent<Collider2D>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+                GameState.Instance.SetChestBoxName(name);
                 if (tag == "gemChest")
                 {
                     UpdateGemCount();
@@ -50,5 +51,28 @@ public class ChestController : ItemController
     {
         GameState.Instance.SetIsRuneStone(true);
         displayText.text = "1";
+    }
+
+    public void LoadData(GameState data)
+    {
+        if (GameState.Instance.CheckChestBoxNameExist(name))
+        {
+            isOpen = true;
+            anim.SetBool("IsOpened", true);
+            GetComponent<Collider2D>().enabled = false;
+        }
+        if (tag == "gemChest")
+        {
+            displayText.text = GameState.Instance.GetGemCount().ToString();
+        }
+        if (tag == "runeChest" && GameState.Instance.GetIsRuneStone())
+        {
+            displayText.text = "1";
+        }
+    }
+
+    public void SaveData()
+    {
+
     }
 }

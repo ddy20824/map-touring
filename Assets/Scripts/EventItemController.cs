@@ -2,9 +2,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EventItemController : ItemController
+public class EventItemController : ItemController, IDataPersistent
 {
     public GameObject display;
+
+    public void LoadData(GameState data)
+    {
+        if (tag == "map")
+        {
+            if (GameState.Instance.GetMapPuzzleActive())
+            {
+                gameObject.SetActive(false);
+                display.SetActive(true);
+            }
+        }
+    }
+
+    public void SaveData()
+    {
+    }
+
     public override void Start()
     {
         base.Start();

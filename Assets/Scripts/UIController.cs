@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
 
-public class UIController : MonoBehaviour
+public class UIController : MonoBehaviour, IDataPersistent
 {
     public GameObject panel;
     public GameObject highlight;
@@ -12,6 +11,7 @@ public class UIController : MonoBehaviour
 
     Vector3[] map_Position;
     Vector2[] mapPuzzle_Position;
+    int[] mapIndex;
     int mapCount;
     public bool isMapOpen = false;
     int currentIndexOfMap = 0;
@@ -95,10 +95,12 @@ public class UIController : MonoBehaviour
         mapCount = Map.Length;
         map_Position = new Vector3[mapCount];
         mapPuzzle_Position = new Vector2[mapCount];
+        mapIndex = new int[mapCount];
         for (int i = 0; i < mapCount; i++)
         {
             map_Position[i] = Map[i].transform.position;
             mapPuzzle_Position[i] = mapPuzzle[i].transform.position;
+            mapIndex[i] = i;
         }
     }
 
@@ -163,6 +165,7 @@ public class UIController : MonoBehaviour
                 GameState.Instance.SetPlayerInitPosition(moving);
             }
             Map[index].transform.position = map_Position[i];
+            mapIndex[i] = index;
         }
     }
 
@@ -256,5 +259,20 @@ public class UIController : MonoBehaviour
             Vector3 m4 = Vector3.Lerp(controlPoint2, startingPoint, count);
             gameObject2.transform.position = Vector3.Lerp(m3, m4, count);
         }
+    }
+
+    public void LoadData(GameState data)
+    {
+        mapIndex = GameState.Instance.GetMapArrangement();
+        for (int i = 0; i < mapCount; i++)
+        {
+            Map[i].transform.position = map_Position[mapIndex[i]];
+            mapPuzzle[i].transform.position = mapPuzzle_Position[mapIndex[i]];
+        }
+    }
+
+    public void SaveData()
+    {
+        GameState.Instance.SetMapArrangement(mapIndex);
     }
 }

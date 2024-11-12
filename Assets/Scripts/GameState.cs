@@ -1,5 +1,5 @@
-using System.IO;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameState
@@ -12,25 +12,38 @@ public class GameState
     [SerializeField]
     private int currentLevel;
     [SerializeField]
-    private int deadCount;
+    private int[] deadCount;
     [SerializeField]
-    private int gemCount;
+    private int[] gemCount;
     [SerializeField]
     private bool isRuneStone;
     [SerializeField]
-    private bool hasWine;
-    private bool playerFronze;
-    private bool playerDie;
+    private string[] recordChestBoxName;
     [SerializeField]
-    private Vector3[] playerLevelPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
+    private int[] mapArrangement;
+    [SerializeField]
+    private bool hasWine;
+    private bool isPlayerFronze;
+    private bool isPlayerDie;
+    [SerializeField]
+    private Vector3[] PlayerInitPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
+    [SerializeField]
+    private Vector3[] PlayerPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
+    private HashSet<string> chestBoxName;
 
     private GameState()
     {
         mapPuzzleActive = false;
+        monsterActive = false;
         currentLevel = 1;
-        deadCount = 0;
-        gemCount = 0;
+        deadCount = new int[2] { 0, 0 };
+        gemCount = new int[2] { 0, 0 };
+        chestBoxName = new HashSet<string>();
+        mapArrangement = new int[4];
         isRuneStone = false;
+        hasWine = false;
+        PlayerInitPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
+        PlayerPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
     }
 
     public static GameState Instance
@@ -43,6 +56,16 @@ public class GameState
             }
             return instance;
         }
+    }
+
+    public void CreateNewGame()
+    {
+        instance = new GameState();
+    }
+
+    public void SetGameState(GameState gameState)
+    {
+        instance = gameState;
     }
 
     public void UpdateGameState(string objectName)
@@ -63,23 +86,21 @@ public class GameState
         }
     }
 
-    public void SaveGame(string filename)
+    public Vector3 GetPlayerPosition()
     {
-        Debug.Log(JsonUtility.ToJson(Instance));
-        string json = JsonUtility.ToJson(GameState.Instance);
-        string path = Path.Combine(Application.persistentDataPath, filename);
-
-        File.WriteAllText(path, json);
-        Debug.Log("Game Saved at:" + path);
+        return PlayerPosition[currentLevel - 1];
     }
-
+    public void SetPlayerPosition(Vector3 position)
+    {
+        PlayerPosition[currentLevel - 1] = position;
+    }
     public Vector3 GetPlayerInitPosition()
     {
-        return playerLevelPosition[currentLevel - 1];
+        return PlayerInitPosition[currentLevel - 1];
     }
     public void SetPlayerInitPosition(Vector3 move)
     {
-        playerLevelPosition[currentLevel - 1] += move;
+        PlayerInitPosition[currentLevel - 1] += move;
     }
     public void SetHasWine(bool hasWine)
     {
@@ -110,21 +131,21 @@ public class GameState
 
     public void SetPlayerFronze(bool fronze)
     {
-        playerFronze = fronze;
+        isPlayerFronze = fronze;
     }
 
     public bool GetPlayerFronze()
     {
-        return playerFronze;
+        return isPlayerFronze;
     }
     public void SetPlayerDie(bool die)
     {
-        playerDie = die;
+        isPlayerDie = die;
     }
 
     public bool GetPlayerDie()
     {
-        return playerDie;
+        return isPlayerDie;
     }
 
     public void SetCurrentLevel(int level)
@@ -137,20 +158,20 @@ public class GameState
     }
     public void AddDeadCount()
     {
-        deadCount++;
+        deadCount[currentLevel - 1]++;
     }
     public int GetDeadCount()
     {
-        return deadCount;
+        return deadCount[currentLevel - 1];
     }
 
     public void SetGemCount(int count)
     {
-        gemCount = count;
+        gemCount[currentLevel - 1] = count;
     }
     public int GetGemCount()
     {
-        return gemCount;
+        return gemCount[currentLevel - 1];
     }
 
     public void SetIsRuneStone(bool status)
@@ -160,5 +181,29 @@ public class GameState
     public bool GetIsRuneStone()
     {
         return isRuneStone;
+    }
+    public void SetChestBoxName(string name)
+    {
+        chestBoxName.Add(name);
+    }
+    public bool CheckChestBoxNameExist(string name)
+    {
+        return chestBoxName.Contains(name);
+    }
+    public void CastCheckBoxNameToArray()
+    {
+        recordChestBoxName = chestBoxName.ToArray();
+    }
+    public void CastCheckBoxNameToSet()
+    {
+        chestBoxName = new HashSet<string>(recordChestBoxName);
+    }
+    public void SetMapArrangement(int[] mapNames)
+    {
+        mapArrangement = mapNames;
+    }
+    public int[] GetMapArrangement()
+    {
+        return mapArrangement;
     }
 }
