@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DataPersistentManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DataPersistentManager : MonoBehaviour
     {
         this.dataPersistentObjects = FindAllDataPersistentObjects();
         this.fileHandler = new FileHandler("Save.sav");
-        NewGame();
+        //NewGame();
     }
 
     // Update is called once per frame
@@ -32,6 +33,10 @@ public class DataPersistentManager : MonoBehaviour
     }
     public void NewGame()
     {
+        if (GameState.Instance.GetCurrentLevel() == 2)
+        {
+            SceneManager.LoadScene("Level1");
+        }
         GameState.Instance.CreateNewGame();
     }
 

@@ -23,6 +23,10 @@ public class GameState
     private int[] mapArrangement;
     [SerializeField]
     private bool hasWine;
+    [SerializeField]
+    private bool activeScrollMap;
+    [SerializeField]
+    private bool activeMap2Rune;
     private bool isPlayerFronze;
     private bool isPlayerDie;
     [SerializeField]
@@ -80,6 +84,9 @@ public class GameState
                 break;
             case "Wine Bottle":
                 SetHasWine(true);
+                break;
+            case "Scroll":
+                SetActiveMap2Rune(true);
                 break;
             default:
                 break;
@@ -205,5 +212,22 @@ public class GameState
     public int[] GetMapArrangement()
     {
         return mapArrangement;
+    }
+    public void SetActiveScrollMap(bool active)
+    {
+        activeScrollMap = active;
+    }
+    public bool GetActiveScrollMap()
+    {
+        return activeScrollMap;
+    }
+
+    public void SetActiveMap2Rune(bool active)
+    {
+        activeMap2Rune = active;
+    }
+    public bool GetActiveMap2Rune()
+    {
+        return activeMap2Rune;
     }
 }

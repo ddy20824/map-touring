@@ -6,6 +6,7 @@ public class UIController : MonoBehaviour, IDataPersistent
     public GameObject panel;
     public GameObject highlight;
     public GameObject player;
+    public GameObject Map2_Rune;
     public GameObject[] Map;
     public GameObject[] mapPuzzle;
 
@@ -13,7 +14,7 @@ public class UIController : MonoBehaviour, IDataPersistent
     Vector2[] mapPuzzle_Position;
     int[] mapIndex;
     int mapCount;
-    public bool isMapOpen = false;
+    bool isMapOpen = false;
     int currentIndexOfMap = 0;
     int selectedMapIndex = -1;
     int playerIndex = 0;
@@ -22,6 +23,7 @@ public class UIController : MonoBehaviour, IDataPersistent
     {
         CloseMapPuzzle();
         GetMapInfo();
+        EventManager.instance.Map2RuneActiveEvent += ActiveMap2PuzzleRune;
     }
 
     void Update()
@@ -240,6 +242,15 @@ public class UIController : MonoBehaviour, IDataPersistent
                 }
                 currentIndexOfMap = expectIndex;
             }
+        }
+    }
+
+    void ActiveMap2PuzzleRune()
+    {
+        if (GameState.Instance.GetCurrentLevel() == 2)
+        {
+            Map2_Rune.SetActive(true);
+            mapPuzzle[1] = Map2_Rune;
         }
     }
 
