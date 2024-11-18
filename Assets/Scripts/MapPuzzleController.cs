@@ -45,7 +45,7 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
             if (selectedMapIndex == -1)
             {
                 selectedMapIndex = currentIndexOfMap;
-                mapPuzzle[selectedMapIndex].transform.GetChild(0).gameObject.SetActive(true);
+                mapPuzzle[mapIndex[selectedMapIndex]].transform.GetChild(0).gameObject.SetActive(true);
             }
             else
             {
@@ -153,10 +153,10 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
         var current = mapPuzzle[currentIndexOfMap];
         selected.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
         current.transform.position = tempPosition;
-        // mapPuzzle[selectedMapIndex] = current;
-        // mapPuzzle[currentIndexOfMap] = selected;
-        mapIndex[selectedMapIndex] = currentIndexOfMap;
-        mapIndex[currentIndexOfMap] = selectedMapIndex;
+        mapPuzzle[selectedMapIndex] = current;
+        mapPuzzle[currentIndexOfMap] = selected;
+        // mapIndex[selectedMapIndex] = currentIndexOfMap;
+        // mapIndex[currentIndexOfMap] = selectedMapIndex;
         selectedMapIndex = -1;
         // count = 0.0f;
     }
@@ -165,9 +165,9 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
     {
         for (int i = 0; i < mapCount; i++)
         {
-            var index = mapIndex[i];
-            // var name = mapPuzzle[mapIndex[i]].name;
-            // var index = int.Parse(name.Substring(name.Length - 1)) - 1;
+            // var index = mapIndex[i];
+            var name = mapPuzzle[mapIndex[i]].name;
+            var index = int.Parse(name.Substring(name.Length - 1)) - 1;
             var moving = map_Position[i] - Map[index].transform.position;
             if (i == playerIndex)
             {
