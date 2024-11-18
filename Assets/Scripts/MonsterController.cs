@@ -4,6 +4,7 @@ public class MonsterController : MonoBehaviour
 {
     Animator anim;
     bool isAutoMon;
+    bool isHiddenMon;
     Vector3 position1;
     Vector3 position2;
     int direction = -1;
@@ -13,15 +14,15 @@ public class MonsterController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         isAutoMon = CompareTag("autoMon");
+        isHiddenMon = CompareTag("hiddenMon");
         if (isAutoMon)
         {
             anim.SetBool("IsRun", true);
             position1 = new Vector3(-13, transform.position.y, 0);
             position2 = new Vector3(-2, transform.position.y, 0);
         }
-        else
+        else if (isHiddenMon)
         {
-
             StartCoroutine(Helper.Delay(SetMonsterIdleAnimation, 0.1f));
         }
     }
@@ -88,7 +89,7 @@ public class MonsterController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (GameState.Instance.GetCurrentLevel() == 2 && GameState.Instance.GetHasWine())
+        if (GameState.Instance.GetCurrentLevel() == 2 && GameState.Instance.GetHasWine() && isHiddenMon)
         {
             GameState.Instance.SetPlayerFronze(true);
             anim.SetTrigger("Disappear");

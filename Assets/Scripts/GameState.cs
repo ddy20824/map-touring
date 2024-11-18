@@ -43,7 +43,7 @@ public class GameState
         deadCount = new int[2] { 0, 0 };
         gemCount = new int[2] { 0, 0 };
         chestBoxName = new HashSet<string>();
-        mapArrangement = new int[4];
+        mapArrangement = new int[4] { 0, 1, 2, 3 };
         isRuneStone = false;
         hasWine = false;
         PlayerInitPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };

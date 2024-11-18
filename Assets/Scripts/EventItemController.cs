@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class EventItemController : ItemController, IDataPersistent
 {
     public GameObject display;
+    public GameObject button;
 
     public void LoadData(GameState data)
     {
@@ -14,6 +15,11 @@ public class EventItemController : ItemController, IDataPersistent
             {
                 gameObject.SetActive(false);
                 display.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+                display.SetActive(false);
             }
         }
     }
@@ -48,12 +54,12 @@ public class EventItemController : ItemController, IDataPersistent
                     {
                         display.SetActive(true);
                         StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
-
                     }
                     else
                     {
                         display.SetActive(true);
                         GameState.Instance.SetPlayerFronze(true);
+                        button.GetComponent<Button>().Select();
                     }
                 }
             }

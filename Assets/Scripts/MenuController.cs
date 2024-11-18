@@ -53,6 +53,7 @@ public class MenuController : MonoBehaviour
         GameState.Instance.SetPlayerFronze(true);
         panel.SetActive(true);
         menuOpen = true;
+        buttons[0].GetComponent<Button>().Select();
     }
 
     void CloseMenu()

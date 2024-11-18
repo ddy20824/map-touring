@@ -38,6 +38,10 @@ public class DataPersistentManager : MonoBehaviour
             SceneManager.LoadScene("Level1");
         }
         GameState.Instance.CreateNewGame();
+        foreach (IDataPersistent dataPersistent in dataPersistentObjects)
+        {
+            dataPersistent.LoadData(GameState.Instance);
+        }
     }
 
     public void LoadGame()

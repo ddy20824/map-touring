@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UIController : MonoBehaviour, IDataPersistent
+public class MapPuzzleController : MonoBehaviour, IDataPersistent
 {
     public GameObject panel;
     public GameObject highlight;
@@ -90,6 +90,11 @@ public class UIController : MonoBehaviour, IDataPersistent
         isMapOpen = false;
         GameState.Instance.SetPlayerFronze(false);
         selectedMapIndex = -1;
+
+        for (int i = 0; i < mapCount; i++)
+        {
+            mapPuzzle[i].transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
     void GetMapInfo()
