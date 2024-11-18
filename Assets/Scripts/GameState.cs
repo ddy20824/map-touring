@@ -171,6 +171,16 @@ public class GameState
     {
         return deadCount[currentLevel - 1];
     }
+    public int GetTotalDeadCount()
+    {
+        int total = 0;
+        foreach (var count in deadCount)
+        {
+            total += count;
+        }
+
+        return total;
+    }
 
     public void SetGemCount(int count)
     {
@@ -179,6 +189,17 @@ public class GameState
     public int GetGemCount()
     {
         return gemCount[currentLevel - 1];
+    }
+
+    public int GetTotalGemCount()
+    {
+        int total = 0;
+        foreach (var count in gemCount)
+        {
+            total += count;
+        }
+
+        return total;
     }
 
     public void SetIsRuneStone(bool status)

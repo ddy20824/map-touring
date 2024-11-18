@@ -7,6 +7,9 @@ public class EventItemController : ItemController, IDataPersistent
     public GameObject display;
     public GameObject button;
 
+    public Text deadTotalText;
+    public Text gemTotalText;
+
     public void LoadData(GameState data)
     {
         if (tag == "map")
@@ -55,11 +58,13 @@ public class EventItemController : ItemController, IDataPersistent
                         display.SetActive(true);
                         StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
                     }
-                    else
+                    else if (GameState.Instance.GetIsRuneStone() && currentLevel == 2)
                     {
-                        display.SetActive(true);
                         GameState.Instance.SetPlayerFronze(true);
                         button.GetComponent<Button>().Select();
+                        deadTotalText.text = GameState.Instance.GetTotalDeadCount().ToString();
+                        gemTotalText.text = GameState.Instance.GetTotalGemCount().ToString();
+                        display.SetActive(true);
                     }
                 }
             }
@@ -70,5 +75,6 @@ public class EventItemController : ItemController, IDataPersistent
     {
         GameState.Instance.SetCurrentLevel(2);
         SceneManager.LoadScene("Level2");
+        GameState.Instance.SetIsRuneStone(false);
     }
 }

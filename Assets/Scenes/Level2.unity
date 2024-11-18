@@ -16248,6 +16248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   display: {fileID: 442103674}
   button: {fileID: 950484686}
+  deadTotalText: {fileID: 923379783}
+  gemTotalText: {fileID: 1995883926}
 --- !u!61 &1653715478
 BoxCollider2D:
   m_ObjectHideFlags: 0
