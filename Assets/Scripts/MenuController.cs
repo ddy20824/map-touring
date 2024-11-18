@@ -50,10 +50,10 @@ public class MenuController : MonoBehaviour
     }
     void OpenMenu()
     {
+        buttons[select_Button].GetComponent<Button>().Select();
         GameState.Instance.SetPlayerFronze(true);
         panel.SetActive(true);
         menuOpen = true;
-        buttons[0].GetComponent<Button>().Select();
     }
 
     void CloseMenu()
@@ -61,6 +61,7 @@ public class MenuController : MonoBehaviour
         GameState.Instance.SetPlayerFronze(false);
         panel.SetActive(false);
         menuOpen = false;
+        select_Button = 0;
     }
 
     void ManageButton()
