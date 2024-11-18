@@ -106,7 +106,7 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
         for (int i = 0; i < mapCount; i++)
         {
             map_Position[i] = Map[i].transform.position;
-            mapPuzzle_Position[i] = mapPuzzle[i].transform.position;
+            mapPuzzle_Position[i] = mapPuzzle[i].transform.localPosition;
             mapIndex[i] = i;
         }
     }
@@ -283,7 +283,7 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
         for (int i = 0; i < mapCount; i++)
         {
             Map[i].transform.position = map_Position[mapIndex[i]];
-            mapPuzzle[i].transform.position = mapPuzzle_Position[mapIndex[i]];
+            mapPuzzle[i].transform.localPosition = mapPuzzle_Position[mapIndex[i]];
         }
     }
 
