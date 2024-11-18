@@ -54,16 +54,19 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
             }
         }
 
-        if (GameState.Instance.GetCurrentLevel() == 1)
+        if (isMapOpen)
         {
-            Level1Control();
-        }
-        else
-        {
-            Level2Control();
+            if (GameState.Instance.GetCurrentLevel() == 1)
+            {
+                Level1Control();
+            }
+            else
+            {
+                Level2Control();
+            }
         }
 
-        highlight.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
+        highlight.transform.localPosition = mapPuzzle_Position[currentIndexOfMap];
         // if (count < 1.0f)
         // {
         //     var point1 = mapPuzzle_Level1[selectedMapIndex].transform.position;
@@ -150,8 +153,10 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
         var current = mapPuzzle[currentIndexOfMap];
         selected.transform.position = mapPuzzle[currentIndexOfMap].transform.position;
         current.transform.position = tempPosition;
-        mapPuzzle[selectedMapIndex] = current;
-        mapPuzzle[currentIndexOfMap] = selected;
+        // mapPuzzle[selectedMapIndex] = current;
+        // mapPuzzle[currentIndexOfMap] = selected;
+        mapIndex[selectedMapIndex] = currentIndexOfMap;
+        mapIndex[currentIndexOfMap] = selectedMapIndex;
         selectedMapIndex = -1;
         // count = 0.0f;
     }
@@ -160,8 +165,9 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
     {
         for (int i = 0; i < mapCount; i++)
         {
-            var name = mapPuzzle[i].name;
-            var index = int.Parse(name.Substring(name.Length - 1)) - 1;
+            var index = mapIndex[i];
+            // var name = mapPuzzle[mapIndex[i]].name;
+            // var index = int.Parse(name.Substring(name.Length - 1)) - 1;
             var moving = map_Position[i] - Map[index].transform.position;
             if (i == playerIndex)
             {
@@ -172,7 +178,7 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
                 GameState.Instance.SetPlayerInitPosition(moving);
             }
             Map[index].transform.position = map_Position[i];
-            mapIndex[i] = index;
+            // mapIndex[i] = index;
         }
     }
 
