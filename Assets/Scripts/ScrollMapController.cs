@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollMapController : ItemController
+public class ScrollMapController : ItemController, IDataPersistent
 {
 
     public override void Update()
@@ -13,6 +13,7 @@ public class ScrollMapController : ItemController
             if (Input.GetKeyDown(KeyCode.F))
             {
                 gameObject.SetActive(false);
+                GameState.Instance.SetActiveScrollMap(false);
                 GameState.Instance.UpdateGameState(gameObject.name);
                 EventManager.instance.TriggerMap2RuneActive();
             }
@@ -27,5 +28,17 @@ public class ScrollMapController : ItemController
             Destroy(gameObject.GetComponent<Rigidbody2D>());
         }
 
+    }
+
+    public void LoadData(GameState data)
+    {
+        if (GameState.Instance.GetActiveMap2Rune())
+        {
+            EventManager.instance.TriggerMap2RuneActive();
+        }
+    }
+
+    public void SaveData()
+    {
     }
 }

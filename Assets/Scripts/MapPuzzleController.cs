@@ -6,7 +6,8 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
     public GameObject panel;
     public GameObject highlight;
     public GameObject player;
-    public GameObject Map2_Rune;
+    public GameObject Map2_HasRune;
+    public GameObject Map2_WithoutRune;
     public GameObject[] Map;
     public GameObject[] mapPuzzle;
 
@@ -262,8 +263,9 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
     {
         if (GameState.Instance.GetCurrentLevel() == 2)
         {
-            Map2_Rune.SetActive(true);
-            mapPuzzle[1] = Map2_Rune;
+            Map2_HasRune.SetActive(true);
+            Map2_WithoutRune.SetActive(false);
+            mapPuzzle[1] = Map2_HasRune;
         }
     }
 
@@ -287,6 +289,21 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
 
     public void LoadData(GameState data)
     {
+        if (GameState.Instance.GetCurrentLevel() == 2)
+        {
+            if (GameState.Instance.GetActiveMap2Rune())
+            {
+                Map2_HasRune.SetActive(true);
+                Map2_WithoutRune.SetActive(false);
+                mapPuzzle[1] = Map2_HasRune;
+            }
+            else
+            {
+                Map2_HasRune.SetActive(false);
+                Map2_WithoutRune.SetActive(true);
+                mapPuzzle[1] = Map2_WithoutRune;
+            }
+        }
         mapIndex = GameState.Instance.GetMapArrangement();
         for (int i = 0; i < mapCount; i++)
         {

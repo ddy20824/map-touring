@@ -46,6 +46,8 @@ public class GameState
         mapArrangement = new int[4] { 0, 1, 2, 3 };
         isRuneStone = false;
         hasWine = false;
+        isPlayerFronze = false;
+        activeMap2Rune = false;
         PlayerInitPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
         PlayerPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
     }

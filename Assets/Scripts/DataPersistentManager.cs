@@ -54,6 +54,16 @@ public class DataPersistentManager : MonoBehaviour
         }
 
         GameState.Instance.SetGameState(gameState);
+        // AsyncOperation asyncLoad;
+        // if (GameState.Instance.GetCurrentLevel() == 1)
+        // {
+        //     asyncLoad = SceneManager.LoadSceneAsync("Level1");
+        // }
+        // else
+        // {
+        //     asyncLoad = SceneManager.LoadSceneAsync("Level2");
+        // }
+
         foreach (IDataPersistent dataPersistent in dataPersistentObjects)
         {
             dataPersistent.LoadData(gameState);

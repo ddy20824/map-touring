@@ -83,6 +83,7 @@ public class MonsterController : MonoBehaviour
     {
         GameState.Instance.SetPlayerFronze(false);
         gameObject.SetActive(false);
+        GameState.Instance.SetMonsterActive(false);
         EventManager.instance.TriggerScrollMapActive();
     }
 

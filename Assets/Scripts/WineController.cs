@@ -1,10 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WineController : ItemController
+public class WineController : ItemController, IDataPersistent
 {
     [SerializeField]
     public Text displayText;
+
+    public void LoadData(GameState data)
+    {
+        if (GameState.Instance.GetHasWine())
+        {
+            gameObject.SetActive(false);
+            displayText.text = "1";
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            displayText.text = "0";
+        }
+    }
+
+    public void SaveData()
+    {
+    }
+
     public override void Start()
     {
         base.Start();
