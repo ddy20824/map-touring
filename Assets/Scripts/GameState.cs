@@ -35,6 +35,13 @@ public class GameState
     private Vector3[] PlayerPosition = new Vector3[2] { new(-37.5f, -4.65f, 0), new(-11f, 0f, 0) };
     private HashSet<string> chestBoxName;
 
+    private Dictionary<string, string> bubbleTextDic = new Dictionary<string, string>() {
+        {"taskRequest", "Give Me Wine!"},
+        {"taskComplete", "Thank You!"}
+    };
+
+    private string bubbleState = "";
+
     private GameState()
     {
         mapPuzzleActive = false;
@@ -252,5 +259,15 @@ public class GameState
     public bool GetActiveMap2Rune()
     {
         return activeMap2Rune;
+    }
+
+    public void SetBubbleState(string newState)
+    {
+        bubbleState = newState;
+    }
+
+    public string GetBubbleText()
+    {
+        return bubbleTextDic[bubbleState];
     }
 }

@@ -1336,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 1301535108}
     - target: {fileID: 794697843, guid: 904d0b8c28276a64c8101ddedd894d57, type: 3}
       propertyPath: jumpPower
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 794697843, guid: 904d0b8c28276a64c8101ddedd894d57, type: 3}
       propertyPath: movePower
@@ -13652,7 +13652,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16130722, y: -0.20181239}
+  m_Offset: {x: 0.16130722, y: 2.6302156}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -13663,7 +13663,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.064317, y: 2.5963752}
+  m_Size: {x: 1.064317, y: 8.260433}
   m_EdgeRadius: 0
 --- !u!212 &1716876415
 SpriteRenderer:

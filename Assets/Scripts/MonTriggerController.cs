@@ -6,10 +6,12 @@ public class MonTriggerController : MonoBehaviour, IDataPersistent
 {
     public GameObject monster;
     public GameObject scrollMap;
+    public GameObject displayText;
 
     void Start()
     {
         EventManager.instance.ScrollMapActiveEvent += ScrollActive;
+        EventManager.instance.Map2AppearMonsterActiveEvent += DisplayTextActive;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,6 +27,11 @@ public class MonTriggerController : MonoBehaviour, IDataPersistent
     {
         GameState.Instance.SetActiveScrollMap(true);
         scrollMap.SetActive(true);
+    }
+
+    void DisplayTextActive()
+    {
+        displayText.SetActive(true);
     }
 
     public void LoadData(GameState data)

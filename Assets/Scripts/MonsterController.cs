@@ -69,11 +69,25 @@ public class MonsterController : MonoBehaviour
     void SetMonsterIdleAnimation()
     {
         anim.SetBool("IsAppear", false);
+        StartCoroutine(Helper.Delay(ActiveMonsterAppearText, 0.7f));
+    }
+    void ActiveMonsterAppearText()
+    {
         GameState.Instance.SetPlayerFronze(false);
+        GameState.Instance.SetBubbleState("taskRequest");
+        EventManager.instance.TriggerMap2AppearMonster();
+    }
+
+    void SetMonsterAttackAnimation()
+    {
+        anim.SetBool("IsAttack", true);
+        isAttacking = true;
+        StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.7f));
     }
 
     void StopMonsterAnimation()
     {
+        GameState.Instance.SetPlayerFronze(false);
         anim.SetBool("IsAttack", false);
         isAttacking = false;
         GameState.Instance.SetPlayerDie(true);
@@ -87,12 +101,13 @@ public class MonsterController : MonoBehaviour
         EventManager.instance.TriggerScrollMapActive();
     }
 
-
     void OnCollisionEnter2D(Collision2D other)
     {
         if (GameState.Instance.GetCurrentLevel() == 2 && GameState.Instance.GetHasWine() && isHiddenMon)
         {
             GameState.Instance.SetPlayerFronze(true);
+            GameState.Instance.SetBubbleState("taskComplete");
+            EventManager.instance.TriggerMap2AppearMonster();
             anim.SetTrigger("Disappear");
             StartCoroutine(Helper.Delay(MonsterDisappear, 1f));
         }
@@ -105,10 +120,17 @@ public class MonsterController : MonoBehaviour
                     direction = (this.transform.position.x > other.transform.position.x) ? 1 : -1;
                     transform.localScale = new Vector3(direction * 5, 5, 5);
                 }
-
-                anim.SetBool("IsAttack", true);
-                isAttacking = true;
-                StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.7f));
+                GameState.Instance.SetPlayerFronze(true);
+                if (isHiddenMon)
+                {
+                    GameState.Instance.SetBubbleState("taskRequest");
+                    EventManager.instance.TriggerMap2AppearMonster();
+                    StartCoroutine(Helper.Delay(SetMonsterAttackAnimation, 2.0f));
+                }
+                else
+                {
+                    SetMonsterAttackAnimation();
+                }
             }
         }
     }
