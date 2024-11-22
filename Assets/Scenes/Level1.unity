@@ -1346,6 +1346,10 @@ PrefabInstance:
       propertyPath: uiController
       value: 
       objectReference: {fileID: 1890299444}
+    - target: {fileID: 794697847, guid: 904d0b8c28276a64c8101ddedd894d57, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8853461538655865705, guid: 904d0b8c28276a64c8101ddedd894d57, type: 3}
       propertyPath: m_Name
       value: Player
@@ -14533,7 +14537,8 @@ MonoBehaviour:
   panel: {fileID: 332199855}
   highlight: {fileID: 1009053884}
   player: {fileID: 267409402}
-  Map2_Rune: {fileID: 0}
+  Map2_HasRune: {fileID: 0}
+  Map2_WithoutRune: {fileID: 0}
   Map:
   - {fileID: 1707271801}
   - {fileID: 249559350}

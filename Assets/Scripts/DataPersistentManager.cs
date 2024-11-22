@@ -9,11 +9,13 @@ public class DataPersistentManager : MonoBehaviour
     public static DataPersistentManager instance { get; private set; }
     private List<IDataPersistent> dataPersistentObjects;
     private FileHandler fileHandler;
+    private GameState gameState;
     // Start is called before the first frame update
     void Start()
     {
         this.dataPersistentObjects = FindAllDataPersistentObjects();
         this.fileHandler = new FileHandler("Save.sav");
+        SceneManager.sceneLoaded += OnSceneLoaded;
         //NewGame();
     }
 
@@ -31,6 +33,12 @@ public class DataPersistentManager : MonoBehaviour
         }
         instance = this;
     }
+
+    private void OnDestroy()
+    {
+        // 取消訂閱，避免記憶體洩漏
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     public void NewGame()
     {
         if (GameState.Instance.GetCurrentLevel() == 2)
@@ -46,7 +54,8 @@ public class DataPersistentManager : MonoBehaviour
 
     public void LoadGame()
     {
-        var gameState = fileHandler.Load();
+        gameState = fileHandler.Load();
+        Debug.Log(gameState);
         if (gameState == null)
         {
             Debug.Log("No gameState");
@@ -54,16 +63,28 @@ public class DataPersistentManager : MonoBehaviour
         }
 
         GameState.Instance.SetGameState(gameState);
-        // AsyncOperation asyncLoad;
-        // if (GameState.Instance.GetCurrentLevel() == 1)
-        // {
-        //     asyncLoad = SceneManager.LoadSceneAsync("Level1");
-        // }
-        // else
-        // {
-        //     asyncLoad = SceneManager.LoadSceneAsync("Level2");
-        // }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        if (GameState.Instance.GetCurrentLevel() == 1)
+        {
+            LoadLevel("Level1");
+        }
+        else
+        {
+            LoadLevel("Level2");
+        }
+    }
 
+    public void LoadLevel(string sceneName)
+    {
+        // 加載場景
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 確保場景已加載完畢，可以安全地操作場景中的物件
+        Debug.Log(scene.name + " Loaded");
+        this.dataPersistentObjects = FindAllDataPersistentObjects();
         foreach (IDataPersistent dataPersistent in dataPersistentObjects)
         {
             dataPersistent.LoadData(gameState);

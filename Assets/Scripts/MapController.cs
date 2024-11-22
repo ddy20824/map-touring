@@ -6,8 +6,12 @@ public class MapController : MonoBehaviour, IDataPersistent
     // Start is called before the first frame update
     void Start()
     {
-        map2_rune = transform.Find("Map2_Rune");
         EventManager.instance.Map2RuneActiveEvent += ActiveMap2Rune;
+    }
+
+    private void Awake()
+    {
+        map2_rune = transform.Find("Map2_Rune");
     }
 
     // Update is called once per frame

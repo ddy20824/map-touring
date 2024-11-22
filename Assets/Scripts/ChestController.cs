@@ -12,8 +12,12 @@ public class ChestController : ItemController, IDataPersistent
     public override void Start()
     {
         base.Start();
-        anim = GetComponent<Animator>();
         isOpen = false;
+    }
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
