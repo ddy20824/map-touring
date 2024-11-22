@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     private GameObject hint;
+    public AudioClip effectSound;
     protected bool isTrigger;
     // Start is called before the first frame update
     public virtual void Start()

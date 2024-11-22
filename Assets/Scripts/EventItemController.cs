@@ -46,6 +46,7 @@ public class EventItemController : ItemController, IDataPersistent
                 base.Update();
                 if (tag == "map")
                 {
+                    AudioSource.PlayClipAtPoint(effectSound, transform.position);
                     gameObject.SetActive(false);
                     display.SetActive(true);
                     GameState.Instance.UpdateGameState(gameObject.name);
@@ -55,11 +56,14 @@ public class EventItemController : ItemController, IDataPersistent
                     int currentLevel = GameState.Instance.GetCurrentLevel();
                     if (GameState.Instance.GetIsRuneStone() && currentLevel == 1)
                     {
+                        AudioSource.PlayClipAtPoint(effectSound, transform.position);
                         display.SetActive(true);
                         StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
                     }
                     else if (GameState.Instance.GetIsRuneStone() && currentLevel == 2)
                     {
+                        AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                        transform.Find("Glow").gameObject.SetActive(true);
                         GameState.Instance.SetPlayerFronze(true);
                         button.GetComponent<Button>().Select();
                         deadTotalText.text = GameState.Instance.GetTotalDeadCount().ToString();

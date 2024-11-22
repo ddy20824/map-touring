@@ -5439,6 +5439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   displayText: {fileID: 1170976178}
 --- !u!61 &471838002
 BoxCollider2D:
@@ -6866,7 +6867,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bea93a38b71b64b598109b3a3b1a0048, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7965,6 +7966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   displayText: {fileID: 1170976178}
 --- !u!61 &844096406
 BoxCollider2D:
@@ -15854,6 +15856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   displayText: {fileID: 1170976178}
 --- !u!1 &1602444403
 GameObject:
@@ -16560,6 +16563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3868dc948701c4cad14352d41aff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1eb7cbaf61d23a64bbd36c0a38b5cb0c, type: 3}
   display: {fileID: 442103674}
   button: {fileID: 950484686}
   deadTotalText: {fileID: 923379783}
@@ -16626,6 +16630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   displayText: {fileID: 1360557298}
 --- !u!61 &1655444387
 BoxCollider2D:
@@ -17207,6 +17212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b987245cf3e8b242a6ac60ed9822e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
 --- !u!1001 &1693741944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18333,6 +18339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b2fb37d0f4c7747a473c9ad6371b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
   displayText: {fileID: 7831041}
 --- !u!1 &1804047391
 GameObject:

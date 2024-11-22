@@ -3229,6 +3229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3868dc948701c4cad14352d41aff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
   display: {fileID: 479846184}
   button: {fileID: 0}
   deadTotalText: {fileID: 0}
@@ -3694,7 +3695,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5b1ed8fbe89154eaf96723b6e5f0aad3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4217,6 +4218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   displayText: {fileID: 10805638}
 --- !u!61 &492621753
 BoxCollider2D:
@@ -13718,6 +13720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   displayText: {fileID: 2019807851}
 --- !u!1 &1716876412
 GameObject:
@@ -13950,6 +13953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3868dc948701c4cad14352d41aff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1eb7cbaf61d23a64bbd36c0a38b5cb0c, type: 3}
   display: {fileID: 1376780685}
   button: {fileID: 0}
   deadTotalText: {fileID: 0}
@@ -15887,6 +15891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb34e7a99894604ba6c8c5d73bfb4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectSound: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
   displayText: {fileID: 10805638}
 --- !u!1 &2019807849
 GameObject:
