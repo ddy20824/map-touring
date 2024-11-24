@@ -223,38 +223,14 @@ public class MapPuzzleController : MonoBehaviour, IDataPersistent
         {
             if (currentIndexOfMap != 0)
             {
-                var expectIndex = currentIndexOfMap - 1;
-                if (expectIndex == selectedMapIndex)
-                {
-                    if (expectIndex != 0)
-                    {
-                        expectIndex--;
-                    }
-                    else
-                    {
-                        expectIndex++;
-                    }
-                }
-                currentIndexOfMap = expectIndex;
+                currentIndexOfMap--;
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (currentIndexOfMap < mapCount - 1)
             {
-                var expectIndex = currentIndexOfMap + 1;
-                if (expectIndex == selectedMapIndex)
-                {
-                    if (expectIndex < mapCount - 1)
-                    {
-                        expectIndex++;
-                    }
-                    else
-                    {
-                        expectIndex--;
-                    }
-                }
-                currentIndexOfMap = expectIndex;
+                currentIndexOfMap++;
             }
         }
     }
