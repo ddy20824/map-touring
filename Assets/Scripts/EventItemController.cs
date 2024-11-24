@@ -54,21 +54,29 @@ public class EventItemController : ItemController, IDataPersistent
                 if (tag == "goal")
                 {
                     int currentLevel = GameState.Instance.GetCurrentLevel();
-                    if (GameState.Instance.GetIsRuneStone() && currentLevel == 1)
+                    if (GameState.Instance.GetIsRuneStone())
                     {
-                        AudioSource.PlayClipAtPoint(effectSound, transform.position);
-                        display.SetActive(true);
-                        StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
+                        if (currentLevel == 1)
+                        {
+                            AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                            display.SetActive(true);
+                            StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
+                        }
+                        else if (currentLevel == 2)
+                        {
+                            AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                            transform.Find("Glow").gameObject.SetActive(true);
+                            GameState.Instance.SetPlayerFronze(true);
+                            button.GetComponent<Button>().Select();
+                            deadTotalText.text = GameState.Instance.GetTotalDeadCount().ToString();
+                            gemTotalText.text = GameState.Instance.GetTotalGemCount().ToString();
+                            display.SetActive(true);
+                        }
                     }
-                    else if (GameState.Instance.GetIsRuneStone() && currentLevel == 2)
+                    else
                     {
-                        AudioSource.PlayClipAtPoint(effectSound, transform.position);
-                        transform.Find("Glow").gameObject.SetActive(true);
-                        GameState.Instance.SetPlayerFronze(true);
-                        button.GetComponent<Button>().Select();
-                        deadTotalText.text = GameState.Instance.GetTotalDeadCount().ToString();
-                        gemTotalText.text = GameState.Instance.GetTotalGemCount().ToString();
-                        display.SetActive(true);
+                        transform.Find("GoalHint").gameObject.SetActive(true);
+                        StartCoroutine(Helper.Delay(CloseGoalHint, 1.0f));
                     }
                 }
             }
@@ -80,5 +88,10 @@ public class EventItemController : ItemController, IDataPersistent
         GameState.Instance.SetCurrentLevel(2);
         SceneManager.LoadScene("Level2");
         GameState.Instance.SetIsRuneStone(false);
+    }
+
+    private void CloseGoalHint()
+    {
+        transform.Find("GoalHint").gameObject.SetActive(false);
     }
 }
