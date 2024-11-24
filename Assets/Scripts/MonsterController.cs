@@ -92,8 +92,13 @@ public class MonsterController : MonoBehaviour
         isAttacking = false;
         GameState.Instance.SetPlayerDie(true);
     }
-
     void MonsterDisappear()
+    {
+        anim.SetTrigger("Disappear");
+        StartCoroutine(Helper.Delay(AfterMonsterDisappear, 1f));
+    }
+
+    void AfterMonsterDisappear()
     {
         GameState.Instance.SetPlayerFronze(false);
         gameObject.SetActive(false);
@@ -108,7 +113,6 @@ public class MonsterController : MonoBehaviour
             GameState.Instance.SetPlayerFronze(true);
             GameState.Instance.SetBubbleState("taskComplete");
             EventManager.instance.TriggerMap2AppearMonster();
-            anim.SetTrigger("Disappear");
             StartCoroutine(Helper.Delay(MonsterDisappear, 1f));
         }
         else

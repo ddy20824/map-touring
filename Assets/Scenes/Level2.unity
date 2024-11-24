@@ -9034,11 +9034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b881c1e50fc734da1da29f1428d377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 438981310}
-  - {fileID: 1297743974}
-  - {fileID: 142587358}
-  - {fileID: 453356041}
+  startButton: {fileID: 438981310}
 --- !u!114 &1001009192
 MonoBehaviour:
   m_ObjectHideFlags: 0

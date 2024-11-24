@@ -16,7 +16,6 @@ public class DataPersistentManager : MonoBehaviour
         this.dataPersistentObjects = FindAllDataPersistentObjects();
         this.fileHandler = new FileHandler("Save.sav");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        //NewGame();
     }
 
     // Update is called once per frame
@@ -41,11 +40,9 @@ public class DataPersistentManager : MonoBehaviour
     }
     public void NewGame()
     {
-        if (GameState.Instance.GetCurrentLevel() == 2)
-        {
-            SceneManager.LoadScene("Level1");
-        }
         GameState.Instance.CreateNewGame();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("Level1");
         foreach (IDataPersistent dataPersistent in dataPersistentObjects)
         {
             dataPersistent.LoadData(GameState.Instance);
