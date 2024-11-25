@@ -18,8 +18,8 @@ public class MonsterController : MonoBehaviour
         if (isAutoMon)
         {
             anim.SetBool("IsRun", true);
-            position1 = new Vector3(-13, transform.position.y, 0);
-            position2 = new Vector3(-2, transform.position.y, 0);
+            position1 = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+            position2 = new Vector3(transform.localPosition.x + 11, transform.localPosition.y, 0);
         }
         else if (isHiddenMon)
         {
@@ -32,14 +32,14 @@ public class MonsterController : MonoBehaviour
         //start -13, end -2
         if (isAutoMon && !isAttacking)
         {
-            position1.x = -13 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
-            position2.x = -2 + Helper.FindParentWithTag(this.gameObject, "map").transform.position.x;
+            position1.x = -13 + Helper.FindParentWithTag(this.gameObject, "map").transform.localPosition.x;
+            position2.x = -2 + Helper.FindParentWithTag(this.gameObject, "map").transform.localPosition.x;
             if (direction == -1)
             {
                 if (duration < 2.5)
                 {
                     transform.localScale = new Vector3(direction * 5, 5, 5);
-                    transform.position = Vector3.Lerp(transform.position, position2, 0.001f);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, position2, 0.005f);
                     duration += Time.deltaTime;
 
                 }
@@ -54,7 +54,7 @@ public class MonsterController : MonoBehaviour
                 if (duration < 2.5)
                 {
                     transform.localScale = new Vector3(direction * 5, 5, 5);
-                    transform.position = Vector3.Lerp(transform.position, position1, 0.001f);
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, position1, 0.005f);
                     duration += Time.deltaTime;
                 }
                 else
