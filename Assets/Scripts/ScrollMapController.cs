@@ -16,7 +16,8 @@ public class ScrollMapController : ItemController, IDataPersistent
                 gameObject.SetActive(false);
                 GameState.Instance.SetActiveScrollMap(false);
                 GameState.Instance.UpdateGameState(gameObject.name);
-                EventManager.instance.TriggerMap2RuneActive();
+                EventManager.instance.TriggerCameraMove();
+                // EventManager.instance.TriggerMap2RuneActive();
             }
         }
     }

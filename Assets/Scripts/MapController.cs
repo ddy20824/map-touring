@@ -22,6 +22,8 @@ public class MapController : MonoBehaviour, IDataPersistent
     void ActiveMap2Rune()
     {
         map2_rune?.gameObject.SetActive(true);
+        // StartCoroutine(Helper.Delay(EventManager.instance.TriggerMap2AppearRune, 0.5f));
+        // EventManager.instance.TriggerMap2AppearRune();
     }
 
     public void LoadData(GameState data)

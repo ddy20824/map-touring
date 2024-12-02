@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour
     public event Action ScrollMapActiveEvent;
     public event Action Map2RuneActiveEvent;
     public event Action Map2AppearMonsterActiveEvent;
+    public event Action CameraMoveEvent;
 
     private void Awake()
     {
@@ -28,5 +29,9 @@ public class EventManager : MonoBehaviour
     public void TriggerMap2AppearMonster()
     {
         Map2AppearMonsterActiveEvent?.Invoke();
+    }
+    public void TriggerCameraMove()
+    {
+        CameraMoveEvent?.Invoke();
     }
 }
