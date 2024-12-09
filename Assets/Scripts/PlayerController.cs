@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour, IDataPersistent
             Run();
 
         }
+        else
+        {
+            anim.SetBool("isRun", false);
+        }
         if (transform.position.y < fallPosition)
         {
             Recover();

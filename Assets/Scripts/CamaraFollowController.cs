@@ -100,11 +100,13 @@ public class CamaraFollowController : MonoBehaviour
     void FocusOnRuneMap()
     {
         focusOnPlayer = false;
+        GameState.Instance.SetPlayerFronze(true);
         StartCoroutine(Helper.Delay(UnFocusOnRuneMap, 2f));
     }
     void UnFocusOnRuneMap()
     {
         focusOnPlayer = true;
+        GameState.Instance.SetPlayerFronze(false);
 
         tParam = 0f;
         routeToGo += 1;
