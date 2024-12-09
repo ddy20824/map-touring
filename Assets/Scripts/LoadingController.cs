@@ -25,7 +25,7 @@ public class LoadongController : MonoBehaviour
         int nowTextLength = LoadingProgressText.text.Length;
         if (nowTextLength == fullText.Length)
         {
-            LoadingProgressText.text = "";
+            LoadingProgressText.text = "Loading";
         }
         else if (nowTextLength < fullText.Length)
         {
