@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
@@ -62,6 +63,21 @@ public class MenuController : MonoBehaviour
         Debug.Log("Save Game");
         DataPersistentManager.instance.SaveGame();
         CloseMenu();
+    }
+
+    public void DisplayObject(GameObject openObject)
+    {
+        openObject.SetActive(true);
+    }
+
+    public void HiddenObject(GameObject closeObject)
+    {
+        closeObject.SetActive(false);
+    }
+
+    public void SetDefaultButton(GameObject defaultButton)
+    {
+        EventSystem.current.SetSelectedGameObject(defaultButton);
     }
 
     public void ExitGame()

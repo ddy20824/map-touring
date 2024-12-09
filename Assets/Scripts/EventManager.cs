@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour
     public event Action Map2RuneActiveEvent;
     public event Action Map2AppearMonsterActiveEvent;
     public event Action CameraMoveEvent;
+    public event Action LoadingActiveEvent;
 
     private void Awake()
     {
@@ -33,5 +34,10 @@ public class EventManager : MonoBehaviour
     public void TriggerCameraMove()
     {
         CameraMoveEvent?.Invoke();
+    }
+
+    public void TriggerLoadingActive()
+    {
+        LoadingActiveEvent?.Invoke();
     }
 }

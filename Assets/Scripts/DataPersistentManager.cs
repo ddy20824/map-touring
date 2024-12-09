@@ -10,6 +10,7 @@ public class DataPersistentManager : MonoBehaviour
     private List<IDataPersistent> dataPersistentObjects;
     private FileHandler fileHandler;
     private GameState gameState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,8 @@ public class DataPersistentManager : MonoBehaviour
     {
         GameState.Instance.CreateNewGame();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene("Level1");
+        StartCoroutine(DisplayLoadingScreen("Level1"));
+        // SceneManager.LoadScene("Level1");
         foreach (IDataPersistent dataPersistent in dataPersistentObjects)
         {
             dataPersistent.LoadData(GameState.Instance);
@@ -74,7 +76,8 @@ public class DataPersistentManager : MonoBehaviour
     public void LoadLevel(string sceneName)
     {
         // 加載場景
-        SceneManager.LoadScene(sceneName);
+        // SceneManager.LoadScene(sceneName);
+        StartCoroutine(DisplayLoadingScreen(sceneName));
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -102,4 +105,15 @@ public class DataPersistentManager : MonoBehaviour
         IEnumerable<IDataPersistent> dataPersistents = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistent>();
         return new List<IDataPersistent>(dataPersistents);
     }
+
+    IEnumerator DisplayLoadingScreen(string sceneName)
+    {
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        while (!async.isDone)
+        {
+            EventManager.instance.TriggerLoadingActive();
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
 }
