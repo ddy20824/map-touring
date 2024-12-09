@@ -6,6 +6,7 @@ public class ChestController : ItemController, IDataPersistent
 {
     private Animator anim;
     private bool isOpen;
+    private GameObject chestItem;
 
     [SerializeField]
     public Text displayText;
@@ -13,6 +14,7 @@ public class ChestController : ItemController, IDataPersistent
     {
         base.Start();
         isOpen = false;
+        chestItem = findChildByTag(this.transform, "chestItem");
     }
 
     private void Awake()
@@ -30,6 +32,8 @@ public class ChestController : ItemController, IDataPersistent
             {
                 isOpen = true;
                 anim.SetBool("IsOpened", true);
+                chestItem.SetActive(true);
+                StartCoroutine(Helper.Delay(() => { chestItem.SetActive(false); }, 0.5f));
                 GetComponent<Collider2D>().enabled = false;
                 GameState.Instance.SetChestBoxName(name);
                 audioSource.PlayOneShot(effectSound);

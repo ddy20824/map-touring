@@ -12,6 +12,7 @@ TagManager:
   - goal
   - wine
   - hiddenMon
+  - chestItem
   layers:
   - Default
   - TransparentFX
