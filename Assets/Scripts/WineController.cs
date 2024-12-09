@@ -37,7 +37,7 @@ public class WineController : ItemController, IDataPersistent
             base.Update();
             if (Input.GetKeyDown(KeyCode.F))
             {
-                AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                audioSource.PlayOneShot(effectSound);
                 gameObject.SetActive(false);
                 GameState.Instance.UpdateGameState(gameObject.name);
                 displayText.text = "1";

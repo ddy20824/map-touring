@@ -8,7 +8,9 @@ public class MonsterController : MonoBehaviour
     // Vector3 position1;
     // Vector3 position2;
     // int direction = -1;
-    bool isAttacking = false;
+    // bool isAttacking = false;
+    public AudioSource audioSource;
+    public AudioClip effectSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +84,8 @@ public class MonsterController : MonoBehaviour
     void SetMonsterAttackAnimation()
     {
         anim.SetBool("IsAttack", true);
-        isAttacking = true;
+        audioSource.PlayOneShot(effectSound);
+        // isAttacking = true;
         StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.7f));
     }
 
@@ -90,7 +93,7 @@ public class MonsterController : MonoBehaviour
     {
         GameState.Instance.SetPlayerFronze(false);
         anim.SetBool("IsAttack", false);
-        isAttacking = false;
+        // isAttacking = false;
         GameState.Instance.SetPlayerDie(true);
     }
     void MonsterDisappear()

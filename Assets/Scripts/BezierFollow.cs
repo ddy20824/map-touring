@@ -19,6 +19,8 @@ public class BezierFollow : MonoBehaviour
     Animator anim;
     int direction = -1;
     bool isAttacking = false;
+    public AudioSource audioSource;
+    public AudioClip effectSound;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +95,7 @@ public class BezierFollow : MonoBehaviour
     void SetMonsterAttackAnimation()
     {
         anim.SetBool("IsAttack", true);
+        audioSource.PlayOneShot(effectSound);
         isAttacking = true;
         StartCoroutine(Helper.Delay(StopMonsterAnimation, 0.5f));
     }

@@ -32,7 +32,7 @@ public class ChestController : ItemController, IDataPersistent
                 anim.SetBool("IsOpened", true);
                 GetComponent<Collider2D>().enabled = false;
                 GameState.Instance.SetChestBoxName(name);
-                AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                audioSource.PlayOneShot(effectSound);
                 if (tag == "gemChest")
                 {
                     UpdateGemCount();

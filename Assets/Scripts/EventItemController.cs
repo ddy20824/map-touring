@@ -46,7 +46,7 @@ public class EventItemController : ItemController, IDataPersistent
                 base.Update();
                 if (tag == "map")
                 {
-                    AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                    audioSource.PlayOneShot(effectSound);
                     gameObject.SetActive(false);
                     display.SetActive(true);
                     GameState.Instance.UpdateGameState(gameObject.name);
@@ -58,13 +58,13 @@ public class EventItemController : ItemController, IDataPersistent
                     {
                         if (currentLevel == 1)
                         {
-                            AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                            audioSource.PlayOneShot(effectSound);
                             display.SetActive(true);
                             StartCoroutine(Helper.Delay(MoveToNextLevel, 1.0f));
                         }
                         else if (currentLevel == 2)
                         {
-                            AudioSource.PlayClipAtPoint(effectSound, transform.position);
+                            audioSource.PlayOneShot(effectSound);
                             transform.Find("Glow").gameObject.SetActive(true);
                             GameState.Instance.SetPlayerFronze(true);
                             button.GetComponent<Button>().Select();
@@ -86,7 +86,7 @@ public class EventItemController : ItemController, IDataPersistent
     private void MoveToNextLevel()
     {
         GameState.Instance.SetCurrentLevel(2);
-        SceneManager.LoadScene("Level2");
+        DataPersistentManager.instance.LoadLevel("Level2");
         GameState.Instance.SetIsRuneStone(false);
     }
 
